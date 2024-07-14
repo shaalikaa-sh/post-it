@@ -19,7 +19,6 @@ export default function PostCard ({ postData }) {
             <div className="mt-[14px] text-left flex items-center">
                 <img className='w-[20px] h-[25px]' src={MessageImg} />
                 <div className='ml-[8px] text-grey-1 text-xs cursor-pointer'>{postData.commentsCount} comments</div>
-                {/* <button className="bg-[#4A96FF] px-[20px] py-[5px] text-white rounded" type="button" onClick={createPost}>Post</button> */}
             </div>
         </div>
     )

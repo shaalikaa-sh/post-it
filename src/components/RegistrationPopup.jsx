@@ -6,7 +6,7 @@ import UserContext from "../utils/UserContext";
 import LoginPopup from './LoginPopup';
 import Overlay from './Overlay';
 
-export default function RegistrationPopup ({ isOpen, onClose, isCloseButtonVisible = true }) {
+export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisible = true }) {
     if (!isOpen) return null;
 
     const [email, setEmail] = useState('')
@@ -53,7 +53,7 @@ export default function RegistrationPopup ({ isOpen, onClose, isCloseButtonVisib
     return (
         <>
             <Overlay>
-                <div className="relative p-[24px] h-[530px] w-[500px] bg-grey-2 border-[1px] border-solid overflow-auto rounded-lg">
+                <div className="animate-slide-up relative p-[24px] h-[530px] w-[500px] bg-grey-2 border-[1px] border-solid overflow-auto rounded-lg">
                     {isCloseButtonVisible && <div className="absolute top-3 right-4 bg-gray-900 p-2 rounded-full w-[30px] h-[30px] pl-[11px] pt-[2px] text-white cursor-pointer" onClick={onClose}>x</div>}
                     <div className="mb-[45px] text-center">
                         <div className="text-grey-1">
@@ -97,7 +97,7 @@ export default function RegistrationPopup ({ isOpen, onClose, isCloseButtonVisib
                             </div>
                         </div>
                         <div className="mt-5">
-                            <button className="w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={register}>Continue</button>
+                            <button className="btn-animation w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={register}>Continue</button>
                         </div>
                         {isFormInvalid && <div className="text-red-500 text-sm mt-[8px]">Please fill all the fields</div>}
                         <div className="mt-5">

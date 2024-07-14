@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import '../assets/css/animations.scss'
 import hidePass from '../assets/images/hide-pass.png'
 import viewPass from '../assets/images/view-pass.png'
 import UserContext from "../utils/UserContext"
@@ -42,8 +43,8 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
     }
     return (
         <>
-            <div className="p-[24px] h-[430px] w-[500px] bg-grey-2 border-2 border-solid rounded-lg relative">
-                {isCloseBtnVisible && (<div className="absolute top-3 right-4 bg-gray-900 p-2 rounded-full w-[30px] h-[30px] pl-[11px] pt-[2px] text-white cursor-pointer" onClick={onClose}>x</div>)}
+            <div className="animate-slide-up p-[24px] h-[430px] w-[500px] bg-grey-2 border-2 border-solid rounded-lg relative">
+                {isCloseBtnVisible && (<div className="absolute top-3 right-4 bg-gray-900 p-2 rounded-full w-[30px] h-[30px] pl-[11px] pt-[2px] text-white cursor-pointer" onClick={onClose.bind(null, false)}>x</div>)}
                 <div className="mb-[45px] text-center">
                     <div className="text-grey-1">
                         Welcome back
@@ -82,7 +83,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                         </div>
                     </div>
                     <div className="mt-5">
-                        <button className="w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={login}>Login now</button>
+                        <button className="btn-animation w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={login}>Login now</button>
                         {isLoginInvalid && <div className="text-red-500 text-sm mt-[8px]">Wrong username or password</div>}
                         {isFormInvalid && <div className="text-red-500 text-sm mt-[8px]">Please fill all the fields</div>}
                     </div>
