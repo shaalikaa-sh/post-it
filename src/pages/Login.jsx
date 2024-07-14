@@ -1,5 +1,5 @@
 import logo from '../assets/images/logo.svg'
-import LoginPopup from "../components/LoginPopup"
+import LoginPopup from "../components/LoginPopup.jsx"
 
 export default function Login() {
     return (

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import PostCard from '../components/PostCard';
-import RegistrationPopup from "../components/RegistrationPopup";
+import PostCard from '../components/PostCard.jsx';
+import RegistrationPopup from "../components/RegistrationPopup.jsx";
 import UserContext from "../utils/UserContext";
 import { postData } from "../utils/mock-data";
 
