@@ -1,7 +1,7 @@
 import MessageImg from '../assets/images/message.png'
 import { EMOJI_MAPPING } from '../constants'
 
-export default PostCard = ({ postData }) => {
+export default function PostCard ({ postData }) {
     return (
         <div className="relative p-[16px] mt-[16px] bg-grey-2 rounded-lg">
             <div className='absolute right-[15px] text-white cursor-pointer text-lg'>...</div>
