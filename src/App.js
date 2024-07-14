@@ -17,9 +17,11 @@ const AppLayout = () => {
     
     return(
         <UserContext.Provider value={{loggedUser: userName, setUserName}}>
-            <div className="bg-black">
-                <Outlet />
-            </div>
+            <Suspense fallback={<h1>Loading....</h1>}>
+                <div className="bg-black">
+                    <Outlet />
+                </div>
+            </Suspense>
         </UserContext.Provider>
     )
 }
