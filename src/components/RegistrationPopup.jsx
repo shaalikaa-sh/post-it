@@ -6,7 +6,7 @@ import UserContext from "../utils/UserContext";
 import LoginPopup from './LoginPopup';
 import Overlay from './Overlay';
 
-export default RegistrationPopup = ({ isOpen, onClose, isCloseButtonVisible = true }) => {
+export default function RegistrationPopup ({ isOpen, onClose, isCloseButtonVisible = true }) {
     if (!isOpen) return null;
 
     const [email, setEmail] = useState('')
