@@ -35,10 +35,10 @@ const appRouter = createBrowserRouter([
             index: true,
             element: isLoggedIn() ? <Home /> : <Login />
         },{
-            path: 'login',
+            path: '/login',
             element: <Login />
         }, {
-            path: 'home',
+            path: '/home',
             element: <Home />
         }],
         errorElement: <PageNotFound />
