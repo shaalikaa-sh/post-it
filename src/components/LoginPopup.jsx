@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import '../assets/css/animations.scss'
 import hidePass from '../assets/images/hide-pass.png'
 import viewPass from '../assets/images/view-pass.png'
 import UserContext from "../utils/UserContext"
@@ -42,8 +43,8 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
     }
     return (
         <>
-            <div className="p-[24px] h-[430px] w-[500px] bg-grey-2 border-2 border-solid rounded-lg relative">
-                {isCloseBtnVisible && (<div className="absolute top-3 right-4 bg-gray-900 p-2 rounded-full w-[30px] h-[30px] pl-[11px] pt-[2px] text-white cursor-pointer" onClick={onClose}>x</div>)}
+            <div className="animate-slide-up p-[24px] h-[430px] w-[500px] bg-grey-2 border-2 border-solid rounded-lg relative">
+                {isCloseBtnVisible && (<div className="absolute top-3 right-4 bg-gray-900 p-2 rounded-full w-[30px] h-[30px] pl-[11px] pt-[2px] text-white cursor-pointer" onClick={onClose.bind(null, false)}>x</div>)}
                 <div className="mb-[45px] text-center">
                     <div className="text-grey-1">
                         Welcome back
@@ -58,7 +59,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                             Email or username
                         </div>
                         <div className="mt-1">
-                            <input required className="w-fill-available bg-grey-2 border-solid border-[1px] border-grey-3 rounded p-2"
+                            <input maxLength="50" className="w-fill-available bg-grey-2 border-solid border-[1px] border-grey-3 rounded p-2"
                                 placeholder="Enter your email or username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </div>
                     </div>
@@ -73,7 +74,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                                 </div>
                             </div>
                             <div className="mt-1 relative">
-                                <input required type={isPasswordVisible ? 'text' : 'password'} className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
+                                <input maxLength="20" type={isPasswordVisible ? 'text' : 'password'} className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
                                     placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 <div className="absolute top-[50%] right-[0.75rem] translate-y-[-50%] w-[25px] cursor-pointer" onClick={togglePasswordVisibility}>
                                     <img src={isPasswordVisible ? hidePass : viewPass} />
@@ -82,7 +83,9 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                         </div>
                     </div>
                     <div className="mt-5">
-                        <button className="w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={login}>Login now</button>
+                        <button className="btn w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={login}>
+                            <span>Login now</span>
+                        </button>
                         {isLoginInvalid && <div className="text-red-500 text-sm mt-[8px]">Wrong username or password</div>}
                         {isFormInvalid && <div className="text-red-500 text-sm mt-[8px]">Please fill all the fields</div>}
                     </div>
@@ -93,7 +96,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                         </span>
                     </div>)}
                 </div>
-            </div>
+            </div >
             {registrationPopupVisible && (
                 <RegistrationPopup isOpen={registrationPopupVisible} onClose={toggleRegistrationPopup.bind(null, false)} />)
             }
