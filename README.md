@@ -1,4 +1,7 @@
 # post-it
+-> Tech Stack
+- React, Tailwind CSS, Parcel, and deployed using Netlify.
+
 -> Please user the below credentials to proceed from Login page to Home page
 username - user
 password - user
