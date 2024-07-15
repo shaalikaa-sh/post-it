@@ -74,6 +74,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                         <div className="mb-[16px] text-grey-4">
                             <div>
                                 Email
+                                <span className="text-red-500">*</span>
                             </div>
                             <div className="mt-1">
                                 <input maxLength="50" className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
@@ -84,6 +85,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                         <div className="mb-[16px] text-grey-4">
                             <div>
                                 Username
+                                <span className="text-red-500">*</span>
                             </div>
                             <div className="mt-1">
                                 <input maxLength="20" className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
@@ -94,6 +96,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                             <div>
                                 <div>
                                     Password
+                                    <span className="text-red-500">*</span>
                                 </div>
                                 <div className="mt-1 relative">
                                     <input maxLength="20" type={isPasswordVisible ? 'text' : 'password'} className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
