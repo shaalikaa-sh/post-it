@@ -57,6 +57,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                     <div className="mb-[16px] text-grey-4">
                         <div>
                             Email or username
+                            <span className="text-red-500">*</span>
                         </div>
                         <div className="mt-1">
                             <input maxLength="50" className="w-fill-available bg-grey-2 border-solid border-[1px] border-grey-3 rounded p-2"
@@ -68,6 +69,7 @@ export default function LoginPopup({ isCloseBtnVisible = false, onClose, showReg
                             <div className="flex justify-between">
                                 <div>
                                     Password
+                                    <span className="text-red-500">*</span>
                                 </div>
                                 <div className="cursor-pointer">
                                     Forgot password?
