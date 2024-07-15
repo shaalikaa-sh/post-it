@@ -2,14 +2,12 @@ import { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
-// import Login from "./pages/Login";
-// import Home from "./pages/Home";
-// import PageNotFound from './components/PageNotFound'
 
 
 const PageNotFound = lazy(() => import('./components/PageNotFound'))
 const Login = lazy(() => import('./pages/Login'))
 const Home = lazy(() => import('./pages/Home'))
+const Loader = lazy(() => import('./components/Loader'))
 
 const AppLayout = () => {
     const username = localStorage.getItem('username') || ''
@@ -17,7 +15,7 @@ const AppLayout = () => {
     
     return(
         <UserContext.Provider value={{loggedUser: userName, setUserName}}>
-            <Suspense fallback={<h1>Loading....</h1>}>
+            <Suspense fallback={<Loader/>}>
                 <div className="bg-black">
                     <Outlet />
                 </div>

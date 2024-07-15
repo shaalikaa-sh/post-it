@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import hidePass from '../assets/images/hide-pass.png';
 import viewPass from '../assets/images/view-pass.png';
 import UserContext from "../utils/UserContext";
+import { isValidEmail } from '../utils/validations';
 import LoginPopup from './LoginPopup';
 import Overlay from './Overlay';
 
@@ -13,6 +14,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
     const [newUsername, setNewUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isFormInvalid, setIsFormInvalid] = useState(false)
+    const [isEmailInvalid, setIsEmailInvalid] = useState(false)
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [loginPopupVisible, setLoginPopupVisible] = useState(false)
 
@@ -26,8 +28,13 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
             setIsFormInvalid(true)
             return
         }
+        if (!isValidEmail(email)) {
+            setIsEmailInvalid(true)
+            return
+        }
         setUserName(newUsername)
         setIsFormInvalid(false)
+        setIsEmailInvalid(false)
         localStorage.setItem('username', newUsername)
         onClose()
         navigate("/home")
@@ -44,7 +51,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
         setIsPasswordVisible(!isPasswordVisible)
     }
     const toggleLoginPopup = (val) => {
-        if (location.pathname === "/login") {
+        if ((location.pathname === "/login") || (location.pathname === "/")) {
             onClose()
         } else {
             setLoginPopupVisible(val)
@@ -69,8 +76,9 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                                 Email
                             </div>
                             <div className="mt-1">
-                                <input required className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
+                                <input maxLength="50" className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
                                     placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                {isEmailInvalid && <div className="text-red-500 text-sm mt-[8px]">Please enter a valid email.</div>}
                             </div>
                         </div>
                         <div className="mb-[16px] text-grey-4">
@@ -78,7 +86,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                                 Username
                             </div>
                             <div className="mt-1">
-                                <input required className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
+                                <input maxLength="20" className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
                                     placeholder="Choose a preferred username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
                             </div>
                         </div>
@@ -88,7 +96,7 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                                     Password
                                 </div>
                                 <div className="mt-1 relative">
-                                    <input required type={isPasswordVisible ? 'text' : 'password'} className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
+                                    <input maxLength="20" type={isPasswordVisible ? 'text' : 'password'} className="w-fill-available bg-grey-2 border-solid border-2 border-grey-3 rounded p-2"
                                         placeholder="Choose a strong password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                     <div className="absolute top-[50%] right-[0.75rem] translate-y-[-50%] w-[25px] cursor-pointer" onClick={togglePasswordVisibility}>
                                         <img src={isPasswordVisible ? hidePass : viewPass} />
@@ -97,9 +105,9 @@ export default function RegistrationPopup({ isOpen, onClose, isCloseButtonVisibl
                             </div>
                         </div>
                         <div className="mt-5">
-                            <button className="btn-animation w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={register}>Continue</button>
+                            <button className="btn w-fill-available bg-[#4A96FF] p-3 text-white rounded" type="button" onClick={register}>Continue</button>
                         </div>
-                        {isFormInvalid && <div className="text-red-500 text-sm mt-[8px]">Please fill all the fields</div>}
+                        {isFormInvalid && <div className="text-red-500 text-sm mt-[8px]">All fields are mandatory.</div>}
                         <div className="mt-5">
                             <span className="text-grey-1">Already have an account?</span>
                             <span className="text-white ml-2 cursor-pointer" onClick={toggleLoginPopup.bind(null, true)}>
